@@ -1,0 +1,333 @@
+<div class="container">
+    <h1 class="title">
+        English to Yoruba Translator
+    </h1>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <title>English to Yoruba Translator</title>
+    </head>
+    <body> 
+    <form action="/speechtranslator" method="post" class="form">
+            <div class="input-container">
+                <textarea  name="speech" id="text-box" class="input-box" placeholder="Search Text" ></textarea>
+                
+                <div class="actions">
+                    <div class="act-btn">
+                        <button type="button" class="btn-speech" id="record">Record</button>
+                    </div>
+                    <div class="act-btn">
+                        <button type="submit" class="btn-speech" name="translate" id="translate">Translate</button>
+                    </div>
+                    <div class="act-btn">
+                        <button type="button" class="btn-speech" id="view_history">History</button>
+                    </div>
+                </div>
+                <input type="text" value="yo" name="language" style="visibility: hidden; display:none">
+
+
+                <textarea class="output-box" name="translated"  id="translate-box" placeholder="Translation" ><%=translated%></textarea>
+
+                <p id="instructions"></p>
+            </div>
+  </form>
+
+  
+</div>
+<div class="history">
+    <div class="history-header">
+        Translation History
+    </div>
+
+    <%history.forEach(element => {%>
+        <div class="history-body">
+            <div class="history-body-search-header">Search Text</div>
+            <div class="history-body-search-body">
+                <%=element.search%>
+            </div>
+            <div class="history-body-translate-header">Translation</div>
+            <div class="history-body-translate-body">
+                <%=element.translation%>
+            </div>
+        </div>
+    <%});%>
+</div>
+<style>
+    *{
+        margin: 0;
+        padding: 0;
+    }
+    body
+        {
+        font-family: Arial, Helvetica, sans-serif;
+        width: 100%;
+        height: auto;
+        padding-top: 20vh;
+        background-color: rgb(48, 48, 48);
+        display: grid;
+        place-items: center;
+        }
+.container{
+    width: 50%;
+    height: 60vh;
+    border-radius: 1.5rem;
+    background-color: rgb(14, 13, 13);
+    box-shadow: -15px 15px 25px rgba(0,0,0, 0.5);
+    display: grid;
+    place-items: center;
+    padding-bottom: 3vh;
+    /* overflow: hidden; */
+
+}
+h1 {
+    color: whitesmoke;
+    margin-top: 6%;
+    font-size: 1.3rem;;
+}
+.form {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.input-container {
+    width: 90%;
+    height: 90%;
+    display: grid;
+    place-items: center;
+}
+#text-box,
+#translate-box {
+    width: 80%;
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    border-radius: 1.2rem;
+    color: black;
+    outline: none;
+    padding: 1.5rem;
+    font-size: 1.5rem;
+    resize: none;
+    overflow: hidden;
+}
+::-webkit-input-placeholder {
+    color:rgb(14, 13, 13);
+}
+.actions {
+    width: 80%;
+    height: auto;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.act-btn > button {
+    width: 30%;
+    min-width: 100px;
+    height: 5vh;
+    background: rgba(255, 255, 255, 0.5);
+    display: grid;
+    place-items: center;;
+    outline: none;
+    border: none;
+    border-radius: 1rem;
+    cursor: pointer;
+}
+.act-btn > button:hover {
+    transition: all ease-in-out .3s;
+    background: rgba(255, 255, 255, 0.9);
+}
+.history {
+    display: none;
+    visibility: hidden;
+    width: 40%;
+    height: auto;
+    margin-bottom: 10vh;
+}
+.history-header {
+    color: whitesmoke;
+    font-size: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 20vh;
+}
+.history-body {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    /* padding: 5%; */
+    border-radius: 1.5rem;
+    background-color: rgb(14, 13, 13);
+    box-shadow: -15px 15px 25px rgba(0,0,0, 0.4);
+    border: none;
+    outline: none;
+    margin-top: 5vh;
+}
+.history-body-search-header,
+.history-body-translate-header {
+    color: whitesmoke;
+    font-size: 1.5rem;
+    margin-top: 4vh;
+}
+
+.history-body-search-body,
+.history-body-translate-body,
+p {
+    color: whitesmoke;
+    font-size: 1rem;
+    text-align: justify;
+    text-justify: inter-word;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+@media  (max-width: 1024px) {
+    .container{
+        width: 60%;
+    }
+    #text-box,
+    #translate-box{
+        font-size: 1rem;
+    }
+    .history{
+        width: 60%;
+    }
+}
+@media  (max-width: 768px) {
+    #text-box,
+    #translate-box {
+        font-size: 1rem;
+    }
+}
+
+@media  (max-width: 768px) {
+    .container{
+        width: 90%;
+    }
+    .history{
+        width: 90%;
+    }
+    #text-box,
+    #translate-box{
+        padding: 1rem;
+        font-size: 1rem;
+        width: 90%;
+    }
+    .actions {
+        flex-direction: column;
+    }
+    .act-btn {
+        width: 100%;
+    }
+    .act-btn > button {
+        width: 100%;
+        margin-top: 10px;
+        /* max-width: 100%; */
+    }
+}
+@media  (max-width: 375px) {
+    h1 {
+        font-size: 1rem;
+    }
+    .container{
+        width: 90%;
+    }
+    .history{
+        width: 90%;
+    }
+    #text-box,
+    #translate-box{
+        font-size: .7rem;
+        width: 90%;
+        padding: .7rem;
+    }
+    .actions {
+        flex-direction: column;
+    }
+    .act-btn {
+        width: 100%;
+    }
+    .act-btn > button {
+        width: 100%;
+        margin-top: 10px;
+        /* max-width: 100%; */
+    }
+}
+
+</style>
+<script>
+
+        var content = '', counter = 0;
+        document.getElementById('view_history').onclick = () => {
+
+            console.log(counter);
+
+            if(counter == 0){
+                $(".history").css({ 'display': 'block', 'visibility': 'visible' });
+            }
+            if (counter == 1){
+                $(".history").css({ 'display': 'none', 'visibility': 'hidden' });
+                counter = -1;
+            }
+            counter++;
+        }
+
+        var textbox = $('#text-box')
+
+
+        var instructions = $('#instructions')
+
+
+        if (!window.hasOwnProperty('webkitSpeechRecognition')){
+            instructions.text('Your browser is unsupported! Please switch to Google Chrome!');
+        }
+
+        var speechRecognition = window.webkitSpeechRecognition
+        var recognition = new speechRecognition()
+
+        recognition.continuous = true
+        //recognition is started
+
+        recognition.onstart = function () {
+            instructions.text('am listening ....')
+        }
+        recognition.onerror = function (){
+            instructions.text('_err: Problem connecting to the internet,try again')
+            setTimeout = 5000;
+
+        }
+        recognition.onspeechend = function (){
+            instructions.text("_err: you are not saying anything!")
+        }
+
+        recognition.onresult = function(event){
+            var current = event.resultIndex;
+
+            var transcript = event.results[current][0].transcript
+
+            content += transcript;
+
+
+        var input =  textbox.val(content)
+        }
+
+
+        $('#record').click(function (event) 
+        {
+            if (content.length){
+                content += '';
+            }
+            recognition.start();
+        });
+
+</script>
+</body>

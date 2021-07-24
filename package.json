@@ -1,0 +1,29 @@
+{
+  "name": "translator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "body-parse": "^0.1.0",
+    "body-parser": "^1.19.0",
+    "ejs": "^3.1.6",
+    "express": "^4.17.1",
+    "node": "^15.10.0",
+    "nodemon": "^2.0.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/jerryHolurantie/English-To-Yoruba-Translator.git"
+  },
+  "author": "Jeremiah Faluyi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jerryHolurantie/English-To-Yoruba-Translator/issues"
+  },
+  "homepage": "https://github.com/jerryHolurantie/English-To-Yoruba-Translator#readme"
+}
