@@ -31,10 +31,10 @@ app.get('/',(req,res) => {
 
 app.post('/speechtranslator',(req,res) => {
 
-  console.log(req.body.speech)
+  //console.log(req.body.speech)
 
   translate(req.body.speech, {to: req.body.language}).then(response => {
-    console.log(response.text);
+    //console.log(response.text);
     const newSearch = {
       "search" : req.body.speech,
       "translation" : response.text
