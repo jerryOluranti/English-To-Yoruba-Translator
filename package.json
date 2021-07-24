@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "15.x"
+  },
   "dependencies": {
     "body-parse": "^0.1.0",
     "body-parser": "^1.19.0",
