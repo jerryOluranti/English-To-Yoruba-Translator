@@ -4,21 +4,24 @@
   "description": "",
   "main": "index.js",
   "engines": {
-    "node": "15.x"
+    "node": "16.x"
   },
   "dependencies": {
+    "@vitalets/google-translate-api": "^4.0.0",
+    "axios": "^0.21.1",
     "body-parse": "^0.1.0",
     "body-parser": "^1.19.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "node": "^15.10.0",
     "nodemon": "^2.0.7",
-    "@vitalets/google-translate-api": "^4.0.0"
+    "translate-api": "^0.3.18"
   },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
+    "start": "node index",
+    "dev": "nodemon index"
   },
   "repository": {
     "type": "git",

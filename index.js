@@ -1,8 +1,8 @@
 const express = require("express");
 
-const fs = require('fs');
+var axios = require("axios").default;
 
-const translate = require('@vitalets/google-translate-api');
+const fs = require('fs');
 
 const app = express();
 
@@ -31,22 +31,33 @@ app.post('/speechtranslator',(req,res) => {
 
   //console.log(req.body.speech)
 
-  translate(req.body.speech, {to: req.body.language}).then(response => {
-    //console.log(response.text);
-    const newSearch = {
-      "search" : req.body.speech,
-      "translation" : response.text
+    var options = {
+      method: 'GET',
+      url: 'https://nlp-translation.p.rapidapi.com/v1/translate',
+      params: {text: req.body.speech, to: 'yo', from: 'en'},
+      headers: {
+        'x-rapidapi-key': process.env.API,
+        'x-rapidapi-host': 'nlp-translation.p.rapidapi.com'
+      }
     };
 
-    history[history.length] = newSearch;
-    const data = JSON.stringify(history);
-    fs.writeFileSync('history.json', data)
-    res.render('speechtranslator',{title:"English To Yoruba Translator",translated:response.text,history:history})
-      }).catch(err => {
-          console.error(err);
-      });
+    axios.request(options).then(function (response) {
+      console.log(response.data.translated_text.yo);
 
-  })
+        const newSearch = {
+          "search" : req.body.speech,
+          "translation" : response.data.translated_text.yo
+        };
+        
+        history[history.length] = newSearch;
+        const data = JSON.stringify(history);
+        fs.writeFileSync('history.json', data)
+        res.render('speechtranslator',{title:"English To Yoruba Translator",translated:response.data.translated_text.yo,history:history})
+    }).catch(function (error) {
+      console.error(error);
+    });
+
+})
 
 
 app.listen(PORT, () => {
