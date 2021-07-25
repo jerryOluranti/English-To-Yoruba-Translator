@@ -7,9 +7,8 @@ const translate = require('@vitalets/google-translate-api');
 const app = express();
 
 
-app.use(express.bodyParser());
-
-// app.use(bodyParser.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
 
 const PORT = process.env.PORT || 3000;
 
