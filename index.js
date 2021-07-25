@@ -2,15 +2,14 @@ const express = require("express");
 
 const fs = require('fs');
 
-const bodyParser = require("body-parser");
-
 const translate = require('@vitalets/google-translate-api');
 
 const app = express();
 
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+app.use(express.bodyParser());
+
+// app.use(bodyParser.urlencoded({ extended: false }));
 
 const PORT = process.env.PORT || 3000;
 
